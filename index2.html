@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Single Page App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+<body>
+
+  <div>
+    <h1>AngularJS SPA Example</h1>
+    <nav>
+      <a href="#!/">Home</a> |
+      <a href="#!/about">About</a> |
+      <a href="#!/contact">Contact</a>|
+      <a href="#!/admin">Admin</a>
+    </nav>
+    <div ng-view></div>
+  </div>
+
+  <script>
+  
+    var app = angular.module("myApp", ["ngRoute"]);
+
+    app.config(function($routeProvider) {
+      $routeProvider
+        .when("/", {
+          template: "<h2>Home Page</h2><p>Welcome to the home page!</p>"
+        })
+        .when("/about", {
+          template: "<h2>About Page</h2><p>This is the about page. (Simulated Lazy Load)</p>"
+        })
+        .when("/contact", {
+          template: "<h2>Contact Page</h2><p>Get in touch here.</p>"
+        })
+        .when("/admin", {
+          template: "<h2>Admin Page</h2><p>Admin panel.</p>"
+        })
+        .otherwise({
+          redirectTo: "/"
+        });
+    });
+  </script>
+</body>
+</html>
